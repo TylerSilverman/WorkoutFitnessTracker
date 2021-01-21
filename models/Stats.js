@@ -5,14 +5,10 @@ const Schema = mongoose.Schema;
 const StatsSchema = new Schema({
   name: {
     type: String,
-    unique: true
   },
-  weight: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Weight"
+  _id: {
+      _id: Schema.Types.ObjectId,
     }
-  ]
 });
 
 const Stats = mongoose.model("Stats", StatsSchema);
