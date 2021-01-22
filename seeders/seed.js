@@ -1,3 +1,4 @@
+//this is npm run seed to put the seed of information into the applicatiion
 let mongoose = require("mongoose");
 let db = require("../models");
 

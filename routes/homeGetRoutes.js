@@ -21,9 +21,13 @@ router.get("/exercise", async (req, res) => {
 
 //create a POST route for add erercise 
 // router.post ("/workouts", async ({body}, res) => {
+//     app.put("/api/workouts/", function(req, res) {
+//         db.workouts.updateOne({ _id: req.params.id }, { likes: req.body.likes }).then(function(dbWorkouts) {
+//           res.json(dbWorkouts);
+//         });
+//       });
 
 // })
-
 
 
 //GET route for the exercise.html

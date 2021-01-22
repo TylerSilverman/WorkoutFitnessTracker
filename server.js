@@ -11,9 +11,9 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //connecting to mongoose sever database 
-mongoose.connect("mongodb://localhost/workout", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
-  useFindAndModify: false
+  // useFindAndModify: false
 });
 
 // consol chalk to write in the terminal  
