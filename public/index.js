@@ -6,7 +6,7 @@ async function init() {
     if (workout) {
       location.search = "?id=" + workout._id;
     } else {
-      console.log("contine btn clicked")
+      console.log("continue btn clicked from index.js")
       document.querySelector("#continue-btn").classList.add("d-none")
     }
   }
