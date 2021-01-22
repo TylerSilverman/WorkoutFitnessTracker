@@ -6,13 +6,6 @@ const WorkoutSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  type: {
-    type: String,
-  },
-  name: {
-    type: String,
-  },
-  
   exercise: Array
   
 });
