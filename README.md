@@ -8,10 +8,6 @@
 
 A consumer will reach their fitness goals more quickly when they track their workout progress.
 
-## Acceptance Criteria
-
-When the user loads the page, they should be given the option to create a new workout or continue with their last workout.
-
 The user should be able to:
 
   * Add exercises to the most recent workout plan.
@@ -29,6 +25,15 @@ To deploy an application with a MongoDB database to Heroku, you'll need to set u
   * [Set Up MongoDB Atlas](../supplemental/mongo_atlas_setup.md)
 
   * [Deploy with Heroku and MongoDB Atlas](../supplemental/mongo_atlas_deploy.md)
+
+  ## Application
+  ![fitnessStart](https://user-images.githubusercontent.com/70153419/105610566-3a482080-5d7e-11eb-9a7a-82929dc1134b.PNG)
+
+  ![addexcersieData](https://user-images.githubusercontent.com/70153419/105610538-14228080-5d7e-11eb-9418-30996eceda05.PNG)
+  ![dataCompleteWorkout](https://user-images.githubusercontent.com/70153419/105610559-2f8d8b80-5d7e-11eb-9ef2-094d23be87cb.PNG)
+  ![lastWorkoutData](https://user-images.githubusercontent.com/70153419/105610573-47650f80-5d7e-11eb-8967-cd39bab67dfb.PNG)
+
+  
 
 
 ## Questions and Comments
