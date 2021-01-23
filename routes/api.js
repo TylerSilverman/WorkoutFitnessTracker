@@ -2,8 +2,9 @@ const router = require('express').Router();
 const Workout = require("../models/Workout.js");
 
 router.get('/workouts', (req, res) => {
-    Workout.aggregate({})
-        .sort({day: 1})
+    Workout.find({})
+    // Workout.aggregate({})
+    //     .sort({day: 1})
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
