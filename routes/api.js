@@ -1,58 +1,88 @@
 const router = require('express').Router();
 const Workout = require("../models/Workout.js");
 
-router.get('/workouts', (req, res) => {
-    Workout.find({}).sort({day: 1})
-        .then(dbWorkout => {
-            res.json(dbWorkout);
-        })
-        .catch(err => {
-            res.json(err.message);
-        });
-})
-
-// router.get('/workouts', (req, res)=>{
-//     Workout.aggregate([{
-//         tot
-//     }])
-// })
-//this workouts/id is from the api.js on line 13
-// router.put('/workouts/:id', (req, res)=>{
-//     console.log("hitting the add exercise btn")
-//     res.json({update: true})
-// })
-
-
-//backend code
-router.put('/workouts/:id', (req, res) => {
-    const id = req.params.id
-    const body = req.body
-
-    Workout.findByIdAndUpdate(id,
-        {
-            $push: {
-                exercises: body
-            }
+router.get("/workouts", (req, res) => {
+    Workout.aggregate([{
+        $addFields:{
+          totalDuration: {$sum: "$exercises.duration"}
         }
-    )
+      }])
+      .sort({ day: 1 })
+      .then(dbworkout => {
+        res.json(dbworkout);
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      });
+  });
+  
+  
+  router.put("/workouts/:id", (req, res) => {
+    let isValid = true;
+    if (req.body.type === "resistance") {
+      if (req.body.name === "") {
+        isValid = false;
+      }
+  
+      if (req.body.weight === "") {
+          isValid = false;
+      }
+  
+      if (req.body.sets === "") {
+          isValid = false;
+      }
+  
+      if (req.body.reps === "") {
+          isValid = false;
+      }
+  
+      if (req.body.duration === "") {
+          isValid = false;
+      }
+    } else if (req.body.type === "cardio") {
+      if (req.body.name === "") {
+          isValid = false;
+      }
+  
+      if (req.body.duration === "") {
+          isValid = false;
+      }
+  
+      if (req.body.distance === "") {
+          isValid = false;
+      }
+    }
+    if (isValid) {
+      Workout.findByIdAndUpdate(
+        req.params.id,
+        {$push:{
+          exercises: req.body
+          }
+        }
+      )
         .then(workout => {
-            res.json(workout);
+          res.json(workout);
         })
         .catch(err => {
-            res.status(400).json(err.message);
+          res.status(400).json(err.message);
         });
-})
-
-router.post("/workouts", ({ body }, res) => {
-    console.log("post workout btn")
-    Workout.create(body)
-        .then(dbWorkout => {
-            res.json(dbWorkout);
-        })
-        .catch(err => {
-            res.json(err.message);
-        });
-});
-
+    }
+  });
+  
+  router.get("/workouts/range", (req, res) => {
+    Workout.aggregate([{
+        $addFields:{
+          totalDuration: {$sum: "$exercises.duration"}
+        }
+      }])
+    .sort({ day: 1 })
+    .then(workoutRange => {
+      res.json(workoutRange);
+    })
+    .catch(err => {
+      res.status(400).json(err.message);
+    });
+  });
+  
 module.exports = router;
 
